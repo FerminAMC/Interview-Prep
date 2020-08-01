@@ -28,23 +28,23 @@ function nodeDepth(node, depth) {
 // O(n) time - O(h) space - where n is the number of nodes in the tree and h is
 // the height of the tree
 function nodeDepths(root) {
-  const stack = []
+  const queue = []
   let depth = 0
   let sum = 0
-  stack.push(root)
-  let levelNodes = stack.length
-  while (stack.length > 0) {
-    const currentNode = stack.shift()
+  queue.push(root)
+  let levelNodes = queue.length
+  while (queue.length > 0) {
+    const currentNode = queue.shift()
     levelNodes--
     if (currentNode.left) {
-      stack.push(currentNode.left)
+      queue.push(currentNode.left)
     }
     if (currentNode.right) {
-      stack.push(currentNode.right)
+      queue.push(currentNode.right)
     }
     if (levelNodes == 0) {
       depth++ // 1
-      levelNodes = stack.length // 2
+      levelNodes = queue.length // 2
       sum += depth * levelNodes // 2
     }
   }
