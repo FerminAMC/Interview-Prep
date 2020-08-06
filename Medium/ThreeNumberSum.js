@@ -14,6 +14,7 @@
  * result = [[-8, 2, 6], [-8, 3, 5], [-6, 1, 5]]
  */
 
+// Formula to find each triplet: currentSum = currentNum + Left + Right
 // O(n^2) time - O(n) space
 function threeNumberSum(array, targetSum) {
   const result = []
@@ -26,13 +27,17 @@ function threeNumberSum(array, targetSum) {
 }
 
 function twoNumberSum(array, targetSum, currentNum, idx, result) {
-  let i = idx
-  let j = array.length - 1
-  while (i < j) {
-    if (array[i] + array[j] === targetSum) {
-      result.push([currentNum, array[i], array[j]])
-      i++
+  let left = idx
+  let right = array.length - 1
+  while (left < right) {
+    if (array[left] + array[right] === targetSum) {
+      result.push([currentNum, array[left], array[right]])
+      left++
+      right--
+    } else if (array[left] + array[right] > targetSum) {
+      right--
+    } else if (array[left] + array[right] < targetSum) {
+      left++
     }
-    array[i] + array[j] < targetSum ? i++ : j--
   }
 }
