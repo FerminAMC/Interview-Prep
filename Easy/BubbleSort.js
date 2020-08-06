@@ -14,6 +14,9 @@ function bubbleSort(array) {
       const temp = array[i]
       array[i] = array[i + 1]
       array[i + 1] = temp
+      // Alternative swapping in JS
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+      //[array[i], array[i+1]] = [array[i+1], array[i]]
     }
     i++
     if (i == arraySize && swap) {
