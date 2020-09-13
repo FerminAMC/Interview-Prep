@@ -20,9 +20,9 @@
  */
 
 /**
- * This solution has to be viewed as traversing a perimeter of an array or a
- * matrix. I set bonding points at each limit of the perimeter; the startCol,
- * endCol, startRow, and endRow. Once I pass through all sides of the perimeter,
+ * This solution has to be viewed as traversing the perimeter of a matrix.
+ * I set boundaries points at each limit of the perimeter; the startCol, endCol,
+ * startRow, and endRow. Once I pass through all sides of the perimeter,
  * I need to reduce the bounds of the perimeter in order to create the spiral
  * traversal.
  * The same logic can be adapted in a recursive solution.
