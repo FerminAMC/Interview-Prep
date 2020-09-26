@@ -16,35 +16,6 @@
  */
 
 /**
- * This is only the first approach. I solve the test case, but still haven't
- * solved it for all cases. I don't really use topological sort here, so this
- * won't apply in other cases.
-var alienOrder = function (words) {
-  let order = ''
-  let lastCharAdded = ''
-  let counter = 0
-  while (counter < words.length) {
-    counter = 0
-    for (let i = 0; i < words.length; i++) {
-      let word = words[i]
-      if (word === '') {
-        counter++
-        continue
-      }
-      let currentChar = word[0]
-      words[i] = word.slice(1)
-      if (!order.includes(currentChar)) {
-        lastCharAdded = currentChar
-        order += currentChar
-      }
-    }
-  }
-
-  return order
-}
- */
-
-/**
  * @param {string[]} words
  * @return {string}
  */
@@ -94,3 +65,32 @@ function alienOrder(words) {
 
   return order.length === uniqueLetters.length ? order : ''
 }
+
+/**
+ * This is only the first approach. I solve the test case, but still haven't
+ * solved it for all cases. I don't really use topological sort here, so this
+ * won't apply in other cases.
+var alienOrder = function (words) {
+  let order = ''
+  let lastCharAdded = ''
+  let counter = 0
+  while (counter < words.length) {
+    counter = 0
+    for (let i = 0; i < words.length; i++) {
+      let word = words[i]
+      if (word === '') {
+        counter++
+        continue
+      }
+      let currentChar = word[0]
+      words[i] = word.slice(1)
+      if (!order.includes(currentChar)) {
+        lastCharAdded = currentChar
+        order += currentChar
+      }
+    }
+  }
+
+  return order
+}
+ */
