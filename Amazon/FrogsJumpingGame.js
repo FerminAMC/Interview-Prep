@@ -23,7 +23,7 @@ use to cross the pond.
 /**
  * This was my approach during my practice interview for Amazon. I was told
  * that this solution works, however, a more optimal solution would be to treat
- * this as a graph.
+ * this as a graph and that would have gotten me the most points.
  * O(n^2) Time | O(n) Space - where n is equal to the number of elements in the
  * array.
  */
