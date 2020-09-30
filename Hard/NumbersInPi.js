@@ -21,15 +21,33 @@
  * Output: 2 => "314159265 | 35897932384626433832 | 79"
  */
 
+/**
+ * O(n^3) Time | O(n + m) Space - where n is the size of pi, and m is the size
+ * of the cache we use in the recursive function getMinSpaces.
+ * The reason this is n^3 and not n^2 is because of the slicing of the string.
+ * In Javascript, that operation takes a time of O(n), adding that extra n to
+ * the time complexity.
+ */
 function numbersInPi(pi, numbers) {
-  let spaces = 0
-  const numbersMap = new Map()
-  for (let i = 0; i < numbers.length; i++) {
-    numbersMap.set(numbers[i], 0)
+  const numbersTable = {}
+  for (const number of numbers) {
+    numbersTable[number] = true
   }
-  let startOfPrefix = 0
-  for (let i = 0; i < pi.length; i++) {
-    const piPrefix = pi.slice(startOfPrefix, i + 1)
+  const minSpaces = getMinSpaces(pi, numbersTable, {}, 0)
+  return minSpaces === Infinity ? -1 : minSpaces
+}
+
+function getMinSpaces(pi, numbersTable, cache, idx) {
+  if (idx === pi.length) return -1
+  if (idx in cache) return cache[idx]
+  let minSpaces = Infinity
+  for (let i = idx; i < pi.length; i++) {
+    const prefix = pi.slice(idx, i + 1)
+    if (prefix in numbersTable) {
+      const minSpacesInSuffix = getMinSpaces(pi, numbersTable, cache, i + 1)
+      minSpaces = Math.min(minSpaces, minSpacesInSuffix + 1)
+    }
   }
-  return spaces
+  cache[idx] = minSpaces
+  return cache[idx]
 }
