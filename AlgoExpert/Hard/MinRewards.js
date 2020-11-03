@@ -16,6 +16,7 @@ You can assume that all students have different scores; in other words, the
 scores are all unique.
 */
 
+// O(n) Time | O(n) Space - where n is the number of scores in the array
 function minRewards(scores) {
   let minScore = 0
   const rewards = new Array(scores.length).fill(1)
@@ -28,7 +29,6 @@ function minRewards(scores) {
   for (const reward of rewards) {
     totalRewards += reward
   }
-  console.log(rewards)
   return totalRewards
 }
 
