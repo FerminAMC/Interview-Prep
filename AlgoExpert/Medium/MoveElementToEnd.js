@@ -32,7 +32,7 @@ function moveElementToEnd(array, toMove) {
   return array
 }
 
-// Solution 2. This solution plays with indexes in the same was is in
+// Solution 2. This solution plays with indexes in the same way as in
 // Two Number Sum
 // O(n) time - O(1) space
 function moveElementToEnd(array, toMove) {
