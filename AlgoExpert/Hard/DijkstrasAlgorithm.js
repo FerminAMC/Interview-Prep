@@ -39,8 +39,8 @@ result = [0, 7, 13, 27, 10, -1]
 // number of edges in the input graph.
 const dijkstrasAlgorithm = (start, edges) => {
   const numberOfVertices = edges.length
-  const minDistances = new Array(numberOfVertices).fill(Infinity)
-  minDistances[start] = 0
+  const minDistances = new Array(numberOfVertices).fill([Infinity, null])
+  minDistances[start] = [0, null]
   const visited = new Set()
 
   while (visited.size !== numberOfVertices) {
@@ -56,15 +56,14 @@ const dijkstrasAlgorithm = (start, edges) => {
       if (visited.has(destination)) continue
 
       const newPathDistance = currentMinDistance + distanceToDestination
-      const currentDestinationDistance = minDistances[destination]
-      minDistances[destination] = Math.min(
-        newPathDistance,
-        currentDestinationDistance,
-      )
+      const currentDestinationDistance = minDistances[destination][0]
+      if (newPathDistance < currentDestinationDistance) {
+        minDistances[destination] = [newPathDistance, vertex]
+      }
     }
   }
 
-  return minDistances.map((x) => (x === Infinity ? -1 : x))
+  return minDistances.map((x) => (x[0] === Infinity ? -1 : x[0]))
 }
 
 const getVertexWithMinDistance = (distances, visited) => {
@@ -73,11 +72,21 @@ const getVertexWithMinDistance = (distances, visited) => {
 
   for (const [vertexIdx, distance] of distances.entries()) {
     if (visited.has(vertexIdx)) continue
-    if (distance <= currentMinDistance) {
+    if (distance[0] <= currentMinDistance) {
       vertex = vertexIdx
-      currentMinDistance = distance
+      currentMinDistance = distance[0]
     }
   }
 
   return [vertex, currentMinDistance]
+}
+
+const buildPathToVertex = (paths, vertex) => {
+  const pathTaken = []
+  let previousVertex = paths[vertex][1]
+  while (previousVertex !== null) {
+    pathTaken.unshift(previousVertex)
+    previousVertex = paths[previousVertex][1]
+  }
+  return pathTaken
 }

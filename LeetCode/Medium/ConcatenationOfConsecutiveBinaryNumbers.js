@@ -6,8 +6,10 @@ concatenating the binary representations of 1 to n in order, modulo 10^9 + 7.
 In order to better understand the third step, convertBinaryToNum, please check
 problem Convert Binary Number in a Linked List to Integer in the "Easy" folder.
 */
+
 const MOD = 1000000007
-// O(nlog(n))
+// O(nlog(b)) - where n is the size of the number and b is the length of every
+// binary string formed, such as '11011' to represent 27.
 const concatenatedBinary = (n) => {
   let result = 0
   for (let i = 1; i <= n; i++) {
