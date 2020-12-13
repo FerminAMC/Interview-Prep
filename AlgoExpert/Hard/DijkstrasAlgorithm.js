@@ -39,6 +39,8 @@ result = [0, 7, 13, 27, 10, -1]
 // number of edges in the input graph.
 const dijkstrasAlgorithm = (start, edges) => {
   const numberOfVertices = edges.length
+  // minDistances will store the distance one has to take to reach a vertex and
+  // the vertex before it, in order to construct the path that was chosen
   const minDistances = new Array(numberOfVertices).fill([Infinity, null])
   minDistances[start] = [0, null]
   const visited = new Set()
