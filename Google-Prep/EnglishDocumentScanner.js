@@ -9,7 +9,6 @@ output.
 
 // O(n) Time | O(m) Space - where n is the size of file one and m is th size of
 // both files combined.
-// One way to optimize this would be by 
 const redactTextFile = (unredactedFile, forbiddenWords) => {
     const fs = require('fs');
     let fileOne = fs.readFileSync('Extra/UnredactedText.txt', 'utf-8');

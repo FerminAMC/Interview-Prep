@@ -52,6 +52,7 @@ const findInMountainArray = (target, mountainArr) => {
     let peakVal = 0;
     let answer = -1;
 
+    // Finding peak val / index in the mountainArray
     while (left < right) {
         const mid = Math.floor((left + right) / 2);
         const midVal = mountainArr.get(mid);
@@ -65,6 +66,8 @@ const findInMountainArray = (target, mountainArr) => {
         }
     }
 
+    // Once I have the peak value and index, I can start from that point doing
+    // binary search on the left and, if needed, right side of the peak.
     if (target > peakVal) return answer;
     answer = ascendingOrder(target, mountainArr, peakIdx);
     if (answer === -1) answer = descendingOrder(target, mountainArr, peakIdx);
